@@ -36,7 +36,7 @@
                   availRef.removeChild(availRef.firstChild);
                }
            },
-           c2a : function(id) { // move selected from chosen back to avail
+           c2ax : function(id) { // move selected from chosen back to avail
                var availRef = document.getElementById(this.prefix + id);
                var chosenRef = document.getElementById(id);
                if (chosenRef.selectedIndex != -1) {
@@ -68,6 +68,33 @@
                 this.selectAllChosen(id);
                 this.c2a(id);
            },
+
+           c2a : function (id) { // move selected from chosen back to avail
+               var availRef = document.getElementById(this.prefix + id);
+               var chosenRef = document.getElementById(id);
+               if (chosenRef.selectedIndex != -1) {
+                   var newAvailFrame = [];
+                   var newChosenFrame = [];
+                   var chosenRefLength = chosenRef.length;
+                   for (var i = 0; i < chosenRefLength; i++) {
+                       var currentChosenRef = chosenRef[i];
+                       if (currentChosenRef.selected) {
+                           newAvailFrame[+currentChosenRef.getAttribute('si')] = currentChosenRef.outerHTML;
+                       } else {
+                           newChosenFrame[+currentChosenRef.getAttribute('si')] = currentChosenRef.outerHTML;
+                       }
+                   }
+                   chosenRef.innerHTML = newChosenFrame.join('');
+                   //
+                   var availRefLength = availRef.length;
+                   for (var i = 0; i < availRefLength; i++) {
+                       var currentAvailRef = availRef[i];
+                       newAvailFrame[+currentAvailRef.getAttribute('si')] = currentAvailRef.outerHTML;
+                   }
+                   //
+                   availRef.innerHTML = newAvailFrame.join('');
+               }
+           },
            c2u : function(id) { // move selected from chosen one place up
                 var chosenRef = document.getElementById(id);
                 if (chosenRef.selectedIndex != -1) {
@@ -97,12 +124,12 @@
                }
            }
        }
-       
+
        function test() {
-           
+
        }
-       
-       
+
+
      </script>
  </head>
 
@@ -116,1064 +143,6 @@
   <td>
     <div>Available</div>
     <select id="MSPP_avail_slctn" ondblclick="MSPP.a2c('slctn')" multiple="true" size="10">
-<option value="7052950" si="0">Ab Band</option>
-<option value="7052785" si="1">Ab-e Kamari</option>
-<option value="6321101" si="2">Abadia Dos Dourados</option>
-<option value="6321102" si="3">Abaete</option>
-<option value="6319362" si="4">Abaetetuba</option>
-<option value="6320034" si="5">Abaiara</option>
-<option value="6320721" si="6">Abaira</option>
-<option value="6320722" si="7">Abare</option>
-<option value="6319363" si="8">Abel Figueiredo</option>
-<option value="7910208" si="9">Abel Iturralde</option>
-<option value="6321103" si="10">Abre Campo</option>
-<option value="6320448" si="11">Abreu E Lima</option>
-<option value="6319504" si="12">Abreulandia</option>
-<option value="6321104" si="13">Acaiaca</option>
-<option value="6319005" si="14">Acailandia</option>
-<option value="6320723" si="15">Acajutiba</option>
-<option value="6319364" si="16">Acara</option>
-<option value="6320035" si="17">Acarape</option>
-<option value="6320036" si="18">Acarau</option>
-<option value="6320113" si="19">Acari</option>
-<option value="6319834" si="20">Acaua</option>
-<option value="6319224" si="21">Acegua</option>
-<option value="7053262" si="22">Achin</option>
-<option value="7874001" si="23">Achtarak</option>
-<option value="6319276" si="24">Acrelandia</option>
-<option value="6320114" si="25">Acu</option>
-<option value="6321105" si="26">Acucena</option>
-<option value="3473156" si="27">Adamantina</option>
-<option value="7839644" si="28">Adelaide</option>
-<option value="7839645" si="29">Adelaide Hills</option>
-<option value="8335162" si="30">Adjaouere</option>
-<option value="8693304" si="31">Adjara</option>
-<option value="7053036" si="32">Adraskan</option>
-<option value="6320724" si="33">Adustina</option>
-<option value="6320449" si="34">Afogados Da Ingazeira</option>
-<option value="6320115" si="35">Afonso Bezerra</option>
-<option value="6319632" si="36">Afonso Cunha</option>
-<option value="6320450" si="37">Afranio</option>
-<option value="6319365" si="38">Afua</option>
-<option value="6320451" si="39">Agrestina</option>
-<option value="6319835" si="40">Agricolandia</option>
-<option value="6319366" si="41">Agua Azul Do Norte</option>
-<option value="6319223" si="42">Agua Boa</option>
-<option value="6321106" si="43">Agua Boa</option>
-<option value="3408207" si="44">Agua Branca</option>
-<option value="6321107" si="45">Agua Comprida</option>
-<option value="6319633" si="46">Agua Doce Do Maranhao</option>
-<option value="6320725" si="47">Agua Fria</option>
-<option value="6319148" si="48">Agua Fria De Goias</option>
-<option value="6320116" si="49">Agua Nova</option>
-<option value="6320452" si="50">Agua Preta</option>
-<option value="3472968" si="51">Aguai</option>
-<option value="6321108" si="52">Aguanil</option>
-<option value="6320453" si="53">Aguas Belas</option>
-<option value="3472872" si="54">Aguas Da Prata</option>
-<option value="3472867" si="55">Aguas De Sao Pedro</option>
-<option value="6321109" si="56">Aguas Formosas</option>
-<option value="6321110" si="57">Aguas Vermelhas</option>
-<option value="3472824" si="58">Agudos</option>
-<option value="7668940" si="59">Aguegues</option>
-<option value="6320259" si="60">Aguiar</option>
-<option value="6319505" si="61">Aguiarnopolis</option>
-<option value="7053975" si="62">Ahmadabad</option>
-<option value="7053818" si="63">Aibak</option>
-<option value="6321111" si="64">Aimores</option>
-<option value="6320727" si="65">Aiquara</option>
-<option value="3408131" si="66">Aiuaba</option>
-<option value="6321112" si="67">Aiuruoca</option>
-<option value="7052952" si="68">Ajristan</option>
-<option value="6321113" si="69">Alagoa</option>
-<option value="6320260" si="70">Alagoa Grande</option>
-<option value="6320261" si="71">Alagoa Nova</option>
-<option value="6320262" si="72">Alagoinha</option>
-<option value="6320454" si="73">Alagoinha</option>
-<option value="6319836" si="74">Alagoinha Do Piaui</option>
-<option value="3472764" si="75">Alagoinhas</option>
-<option value="7053084" si="76">Alah Say</option>
-<option value="7839657" si="77">Albany</option>
-<option value="6321114" si="78">Albertina</option>
-<option value="2178173" si="79">Albury Municipality</option>
-<option value="6319634" si="80">Alcantara</option>
-<option value="6320037" si="81">Alcantaras</option>
-<option value="6320263" si="82">Alcantil</option>
-<option value="6320728" si="83">Alcobaca</option>
-<option value="6319635" si="84">Aldeias Altas</option>
-<option value="6319837" si="85">Alegrete Do Piaui</option>
-<option value="6319092" si="86">Alem Paraiba</option>
-<option value="6319367" si="87">Alenquer</option>
-<option value="6319030" si="88">Alexandria</option>
-<option value="7839646" si="89">Alexandrina</option>
-<option value="6321115" si="90">Alfenas</option>
-<option value="3472589" si="91">Alfredo Marcondes</option>
-<option value="6321116" si="92">Alfredo Vasconcelos</option>
-<option value="6320264" si="93">Algodao De Jandaira</option>
-<option value="6319045" si="94">Alhandra</option>
-<option value="7053312" si="95">Aliabad</option>
-<option value="6320455" si="96">Alianca</option>
-<option value="6319506" si="97">Alianca Do Tocantins</option>
-<option value="7839681" si="98">Alice Springs</option>
-<option value="7053969" si="99">Alingar</option>
-<option value="7053970" si="100">Alisheng</option>
-<option value="6320729" si="101">Almadina</option>
-<option value="7052928" si="102">Almar</option>
-<option value="6319507" si="103">Almas</option>
-<option value="6321117" si="104">Almenara</option>
-<option value="6320117" si="105">Almino Afonso</option>
-<option value="6321118" si="106">Alpercata</option>
-<option value="7839525" si="107">Alpine</option>
-<option value="6321119" si="108">Alpinopolis</option>
-<option value="6319229" si="109">Alta Floresta D'Oeste</option>
-<option value="6319636" si="110">Altamira Do Maranhao</option>
-<option value="6320038" si="111">Altaneira</option>
-<option value="6321120" si="112">Alterosa</option>
-<option value="6320456" si="113">Altinho</option>
-<option value="3472484" si="114">Altinopolis</option>
-<option value="3472474" si="115">Alto Alegre</option>
-<option value="6319637" si="116">Alto Alegre Do Maranhao</option>
-<option value="6319006" si="117">Alto Alegre Do Pindare</option>
-<option value="6319251" si="118">Alto Alegre Dos Parecis</option>
-<option value="6319222" si="119">Alto Boa Vista</option>
-<option value="6321121" si="120">Alto Caparao</option>
-<option value="6320118" si="121">Alto Do Rodrigues</option>
-<option value="6319838" si="122">Alto Longa</option>
-<option value="6319252" si="123">Alto Paraiso</option>
-<option value="6319149" si="124">Alto Paraiso De Goias</option>
-<option value="6319638" si="125">Alto Parnaiba</option>
-<option value="6321122" si="126">Alto Rio Doce</option>
-<option value="6320039" si="127">Alto Santo</option>
-<option value="6319221" si="128">Altos</option>
-<option value="6319294" si="129">Alvaraes</option>
-<option value="6321123" si="130">Alvarenga</option>
-<option value="3472418" si="131">Alvares Florence</option>
-<option value="3472416" si="132">Alvares Machado</option>
-<option value="3472413" si="133">Alvaro De Carvalho</option>
-<option value="6321124" si="134">Alvinopolis</option>
-<option value="6319508" si="135">Alvorada</option>
-<option value="6319250" si="136">Alvorada D'Oeste</option>
-<option value="6321125" si="137">Alvorada De Minas</option>
-<option value="6319839" si="138">Alvorada Do Gurgueia</option>
-<option value="6319351" si="139">Amajari</option>
-<option value="6319493" si="140">Amapa</option>
-<option value="6319639" si="141">Amapa Do Maranhao</option>
-<option value="6320457" si="142">Amaraji</option>
-<option value="6319840" si="143">Amarante</option>
-<option value="6319640" si="144">Amarante Do Maranhao</option>
-<option value="6320730" si="145">Amargosa</option>
-<option value="6319295" si="146">Amatura</option>
-<option value="2243908" si="147">Ambuila Municipality</option>
-<option value="6320731" si="148">Amelia Rodrigues</option>
-<option value="6320732" si="149">America Dourada</option>
-<option value="3472342" si="150">Americana</option>
-<option value="3472336" si="151">Americo De Campos</option>
-<option value="6320074" si="152">Amontada</option>
-<option value="3472310" si="153">Amparo</option>
-<option value="3472306" si="154">Amparo De Sao Francisco</option>
-<option value="6321126" si="155">Amparo Do Serra</option>
-<option value="3407692" si="156">Anadia</option>
-<option value="6320733" si="157">Anage</option>
-<option value="6319368" si="158">Anajas</option>
-<option value="6319641" si="159">Anajatuba</option>
-<option value="3472293" si="160">Analandia</option>
-<option value="6319296" si="161">Anama</option>
-<option value="6319509" si="162">Ananas</option>
-<option value="7839647" si="163">Anangu Pitjantjatjara</option>
-<option value="6319369" si="164">Ananindeua</option>
-<option value="6319370" si="165">Anapu</option>
-<option value="6319642" si="166">Anapurus</option>
-<option value="7052917" si="167">Anar Darah</option>
-<option value="7052953" si="168">Andar</option>
-<option value="7052857" si="169">Andarab</option>
-<option value="6320734" si="170">Andarai</option>
-<option value="7052929" si="171">Andkhoy</option>
-<option value="6320735" si="172">Andorinha</option>
-<option value="6321127" si="173">Andradas</option>
-<option value="6321129" si="174">Andrelandia</option>
-<option value="6321130" si="175">Angelandia</option>
-<option value="6320458" si="176">Angelim</option>
-<option value="6320736" si="177">Angical</option>
-<option value="6319841" si="178">Angical Do Piaui</option>
-<option value="6319510" si="179">Angico</option>
-<option value="6319031" si="180">Angicos</option>
-<option value="6320737" si="181">Anguera</option>
-<option value="6319842" si="182">Anisio De Abreu</option>
-<option value="6319297" si="183">Anori</option>
-<option value="6320738" si="184">Antas</option>
-<option value="6320041" si="185">Antonina Do Norte</option>
-<option value="6319843" si="186">Antonio Almeida</option>
-<option value="6320739" si="187">Antonio Cardoso</option>
-<option value="6321131" si="188">Antonio Carlos</option>
-<option value="6321132" si="189">Antonio Dias</option>
-<option value="6320740" si="190">Antonio Goncalves</option>
-<option value="6320119" si="191">Antonio Martins</option>
-<option value="3471980" si="192">Antonio Prado</option>
-<option value="6321133" si="193">Antonio Prado De Minas</option>
-<option value="6319046" si="194">Aparecida</option>
-<option value="6319511" si="195">Aparecida Do Rio Negro</option>
-<option value="6319643" si="196">Apicum-Acu</option>
-<option value="6320120" si="197">Apodi</option>
-<option value="6320741" si="198">Apora</option>
-<option value="6320742" si="199">Apuarema</option>
-<option value="6319298" si="200">Apui</option>
-<option value="6319166" si="201">Apuiares</option>
-<option value="7053807" si="202">Aqchah</option>
-<option value="3471899" si="203">Aquidaba</option>
-<option value="6320042" si="204">Aquiraz</option>
-<option value="616205" si="205">Arabkir</option>
-<option value="6320266" si="206">Aracagi</option>
-<option value="6319093" si="207">Aracai</option>
-<option value="6320682" si="208">Aracaju</option>
-<option value="6320744" si="209">Aracas</option>
-<option value="6320743" si="210">Aracatu</option>
-<option value="6320745" si="211">Araci</option>
-<option value="6321134" si="212">Aracitaba</option>
-<option value="3407365" si="213">Aracoiaba</option>
-<option value="6321135" si="214">Aracuai</option>
-<option value="6319512" si="215">Aragominas</option>
-<option value="6319513" si="216">Araguacema</option>
-<option value="6319514" si="217">Araguacu</option>
-<option value="6319515" si="218">Araguaina</option>
-<option value="6319516" si="219">Araguana</option>
-<option value="6319644" si="220">Araguana</option>
-<option value="6321136" si="221">Araguari</option>
-<option value="6319517" si="222">Araguatins</option>
-<option value="6319645" si="223">Araioses</option>
-<option value="6319646" si="224">Arame</option>
-<option value="6321137" si="225">Arantina</option>
-<option value="3407326" si="226">Arapiraca</option>
-<option value="6319518" si="227">Arapoema</option>
-<option value="6321138" si="228">Araponga</option>
-<option value="6321139" si="229">Arapora</option>
-<option value="6321140" si="230">Arapua</option>
-<option value="6320267" si="231">Arara</option>
-<option value="7839526" si="232">Ararat</option>
-<option value="6319647" si="233">Arari</option>
-<option value="3407246" si="234">Araripe</option>
-<option value="6319067" si="235">Araripina</option>
-<option value="6320268" si="236">Araruna</option>
-<option value="6320746" si="237">Arataca</option>
-<option value="6320043" si="238">Aratuba</option>
-<option value="6320747" si="239">Aratuipe</option>
-<option value="6320683" si="240">Araua</option>
-<option value="6321141" si="241">Araujos</option>
-<option value="6321142" si="242">Araxa</option>
-<option value="6321143" si="243">Arceburgo</option>
-<option value="6321144" si="244">Arcos</option>
-<option value="6320459" si="245">Arcoverde</option>
-<option value="6321145" si="246">Areado</option>
-<option value="6319101" si="247">Areal</option>
-<option value="3407206" si="248">Areia</option>
-<option value="6320121" si="249">Areia Branca</option>
-<option value="6320684" si="250">Areia Branca</option>
-<option value="6320269" si="251">Areia De Baraunas</option>
-<option value="6320270" si="252">Areial</option>
-<option value="6320122" si="253">Ares</option>
-<option value="7053298" si="254">Arghandab</option>
-<option value="7053344" si="255">Arghandab</option>
-<option value="7052641" si="256">Arghanj Khwah</option>
-<option value="7053299" si="257">Arghistan</option>
-<option value="6321146" si="258">Argirita</option>
-<option value="7052663" si="259">Argo</option>
-<option value="6321147" si="260">Aricanduva</option>
-<option value="6321148" si="261">Arinos</option>
-<option value="6319230" si="262">Ariquemes</option>
-<option value="6319102" si="263">Armacao De Buzios</option>
-<option value="7839658" si="264">Armadale</option>
-<option value="2177670" si="265">Armidale Dumaresq</option>
-<option value="6320044" si="266">Arneiroz</option>
-<option value="6319844" si="267">Aroazes</option>
-<option value="6320271" si="268">Aroeiras</option>
-<option value="6319845" si="269">Arraial</option>
-<option value="6319519" si="270">Arraias</option>
-<option value="7053952" si="271">Asadabad</option>
-<option value="7839659" si="272">Ashburton</option>
-<option value="7839683" si="273">Ashfield</option>
-<option value="3407009" si="274">Assare</option>
-<option value="6319104" si="275">Assis</option>
-<option value="6319277" si="276">Assis Brasil</option>
-<option value="6320393" si="277">Assis Chateaubriand</option>
-<option value="6320272" si="278">Assuncao</option>
-<option value="6319846" si="279">Assuncao Do Piaui</option>
-<option value="6321149" si="280">Astolfo Dutra</option>
-<option value="6320620" si="281">Atalaia</option>
-<option value="6319299" si="282">Atalaia Do Norte</option>
-<option value="6321150" si="283">Ataleia</option>
-<option value="7053345" si="284">Atghar</option>
-<option value="7839684" si="285">Auburn</option>
-<option value="2077473" si="286">Augusta-Margaret River Shire</option>
-<option value="6319520" si="287">Augustinopolis</option>
-<option value="6319371" si="288">Augusto Correa</option>
-<option value="6320123" si="289">Augusto Severo</option>
-<option value="6320748" si="290">Aurelino Leal</option>
-<option value="6319150" si="291">Aurilandia</option>
-<option value="3406952" si="292">Aurora</option>
-<option value="6319372" si="293">Aurora Do Para</option>
-<option value="6319521" si="294">Aurora Do Tocantins</option>
-<option value="7839556" si="295">Aurukun</option>
-<option value="6319300" si="296">Autazes</option>
-<option value="6319648" si="297">Axixa</option>
-<option value="6319522" si="298">Axixa Do Tocantins</option>
-<option value="7053255" si="299">Azrah</option>
-<option value="6319523" si="300">Babaculandia</option>
-<option value="7669114" si="301">Babek Rayon</option>
-<option value="6319649" si="302">Bacabal</option>
-<option value="6319650" si="303">Bacabeira</option>
-<option value="6319651" si="304">Bacuri</option>
-<option value="6319652" si="305">Bacurituba</option>
-<option value="6321151" si="306">Baependi</option>
-<option value="1337209" si="307">Bagerhat District</option>
-<option value="7052897" si="308">Baghlan-e Jadid</option>
-<option value="7053015" si="309">Baghran</option>
-<option value="7054036" si="310">Bagram</option>
-<option value="7053051" si="311">Bagrami</option>
-<option value="6319373" si="312">Bagre</option>
-<option value="7052664" si="313">Baharak</option>
-<option value="7053318" si="314">Baharak</option>
-<option value="7052954" si="315">Bahram-e Shahid</option>
-<option value="7732056" si="316">Bahrami Shahid</option>
-<option value="6320273" si="317">Baia Da Traicao</option>
-<option value="6320124" si="318">Baia Formosa</option>
-<option value="6320749" si="319">Baianopolis</option>
-<option value="6319374" si="320">Baiao</option>
-<option value="6320750" si="321">Baixa Grande</option>
-<option value="6319847" si="322">Baixa Grande Do Ribeiro</option>
-<option value="3406622" si="323">Baixio</option>
-<option value="7054006" si="324">Bak</option>
-<option value="7052918" si="325">Bakwah</option>
-<option value="7052930" si="326">Bal Chiragh</option>
-<option value="7052919" si="327">Bala Buluk</option>
-<option value="6321152" si="328">Baldim</option>
-<option value="6319151" si="329">Baliza</option>
-<option value="7053945" si="330">Balkhab</option>
-<option value="2177089" si="331">Ballarat North</option>
-<option value="7839686" si="332">Ballina</option>
-<option value="2177036" si="333">Balonne Shire</option>
-<option value="7839687" si="334">Balranald</option>
-<option value="6319653" si="335">Balsas</option>
-<option value="6321153" si="336">Bambui</option>
-<option value="7732055" si="337">Bamyan</option>
-<option value="7839557" si="338">Banana</option>
-<option value="6320274" si="339">Bananeiras</option>
-<option value="1337201" si="340">Bandarban District</option>
-<option value="6321154" si="341">Bandeira</option>
-<option value="6321155" si="342">Bandeira Do Sul</option>
-<option value="6319524" si="343">Bandeirantes Do Tocantins</option>
-<option value="7053319" si="344">Bangi</option>
-<option value="7839688" si="345">Bankstown</option>
-<option value="6319375" si="346">Bannach</option>
-<option value="7839527" si="347">Banyule</option>
-<option value="6320751" si="348">Banzae</option>
-<option value="7053955" si="349">Bar Kunar</option>
-<option value="7053256" si="350">Baraki Barak</option>
-<option value="6321156" si="351">Barao De Cocais</option>
-<option value="6319007" si="352">Barao De Grajau</option>
-<option value="6321157" si="353">Barao De Monte Alto</option>
-<option value="6320125" si="354">Barauna</option>
-<option value="6320275" si="355">Barauna</option>
-<option value="6321158" si="356">Barbacena</option>
-<option value="3406441" si="357">Barbalha</option>
-<option value="7839558" si="358">Barcaldine</option>
-<option value="6319376" si="359">Barcarena</option>
-<option value="6320126" si="360">Barcelona</option>
-<option value="6319301" si="361">Barcelos</option>
-<option value="7839559" si="362">Barcoo</option>
-<option value="7054022" si="363">Barg-e Matal</option>
-<option value="1337217" si="364">Barguna District</option>
-<option value="1185286" si="365">Barisal District</option>
-<option value="7839682" si="366">Barkly</option>
-<option value="7839648" si="367">Barossa</option>
-<option value="6320752" si="368">Barra</option>
-<option value="6319848" si="369">Barra D'Alcantara</option>
-<option value="6320753" si="370">Barra Da Estiva</option>
-<option value="6320460" si="371">Barra De Guabiraba</option>
-<option value="6320277" si="372">Barra De Santa Rosa</option>
-<option value="6320276" si="373">Barra De Santana</option>
-<option value="6319070" si="374">Barra De Santo Antonio</option>
-<option value="6320278" si="375">Barra De Sao Miguel</option>
-<option value="6320621" si="376">Barra De Sao Miguel</option>
-<option value="6320754" si="377">Barra Do Choca</option>
-<option value="6319654" si="378">Barra Do Corda</option>
-<option value="6319525" si="379">Barra Do Ouro</option>
-<option value="6320755" si="380">Barra Do Rocha</option>
-<option value="6320685" si="381">Barra Dos Coqueiros</option>
-<option value="6321159" si="382">Barra Longa</option>
-<option value="6319849" si="383">Barras</option>
-<option value="6320045" si="384">Barreira</option>
-<option value="3470579" si="385">Barreiras</option>
-<option value="6319850" si="386">Barreiras Do Piaui</option>
-<option value="6319302" si="387">Barreirinha</option>
-<option value="6319655" si="388">Barreirinhas</option>
-<option value="6320461" si="389">Barreiros</option>
-<option value="3406080" si="390">Barro</option>
-<option value="6320756" si="391">Barro Alto</option>
-<option value="6319851" si="392">Barro Duro</option>
-<option value="6320757" si="393">Barro Preto</option>
-<option value="6319220" si="394">Barrocas</option>
-<option value="6319526" si="395">Barrolandia</option>
-<option value="6320046" si="396">Barroquinha</option>
-<option value="6319134" si="397">Barros Cassal</option>
-<option value="6321160" si="398">Barroso</option>
-<option value="7839649" si="399">Barunga West</option>
-<option value="7839528" si="400">Bass Coast</option>
-<option value="7839660" si="401">Bassendean</option>
-<option value="3405992" si="402">Batalha</option>
-<option value="7839689" si="403">Bathurst Regional</option>
-<option value="7053263" si="404">Bati Kot</option>
-<option value="3405953" si="405">Baturite</option>
-<option value="7839529" si="406">Baw Baw</option>
-<option value="6320279" si="407">Bayeux</option>
-<option value="7839530" si="408">Bayside</option>
-<option value="7839661" si="409">Bayswater</option>
-<option value="7054337" si="410">Bazarak</option>
-<option value="2362644" si="411">Bazega Province</option>
-<option value="6320047" si="412">Beberibe</option>
-<option value="7839691" si="413">Bega Valley</option>
-<option value="6320048" si="414">Bela Cruz</option>
-<option value="6321161" si="415">Bela Vista De Minas</option>
-<option value="6319657" si="416">Bela Vista Do Maranhao</option>
-<option value="6319852" si="417">Bela Vista Do Piaui</option>
-<option value="6319656" si="418">Belagua</option>
-<option value="6319377" si="419">Belem</option>
-<option value="6320280" si="420">Belem</option>
-<option value="6320622" si="421">Belem</option>
-<option value="6320462" si="422">Belem De Maria</option>
-<option value="6320463" si="423">Belem De Sao Francisco</option>
-<option value="6320281" si="424">Belem Do Brejo Do Cruz</option>
-<option value="6319853" si="425">Belem Do Piaui</option>
-<option value="7839692" si="426">Bellingen</option>
-<option value="7839662" si="427">Belmont</option>
-<option value="6319073" si="428">Belmonte</option>
-<option value="6320758" si="429">Belo Campo</option>
-<option value="6321162" si="430">Belo Horizonte</option>
-<option value="6320464" si="431">Belo Jardim</option>
-<option value="6321163" si="432">Belo Oriente</option>
-<option value="6321164" si="433">Belo Vale</option>
-<option value="6319378" si="434">Belterra</option>
-<option value="7839374" si="435">Belyuen</option>
-<option value="7669270" si="436">Bembereke</option>
-<option value="7839531" si="437">Benalla</option>
-<option value="6319017" si="438">Beneditinos</option>
-<option value="6319658" si="439">Benedito Leite</option>
-<option value="6319379" si="440">Benevides</option>
-<option value="6319303" si="441">Benjamin Constant</option>
-<option value="6320127" si="442">Bento Fernandes</option>
-<option value="6319219" si="443">Bento Goncalves</option>
-<option value="6319659" si="444">Bequimao</option>
-<option value="6321165" si="445">Berilo</option>
-<option value="6321167" si="446">Berizal</option>
-<option value="7053774" si="447">Bermal</option>
-<option value="6320282" si="448">Bernardino Batista</option>
-<option value="6319660" si="449">Bernardo Do Mearim</option>
-<option value="6319527" si="450">Bernardo Sayao</option>
-<option value="7839650" si="451">Berri and Barmera</option>
-<option value="7839693" si="452">Berrigan</option>
-<option value="6319854" si="453">Bertolinia</option>
-<option value="6321166" si="454">Bertopolis</option>
-<option value="6319304" si="455">Beruri</option>
-<option value="6320465" si="456">Betania</option>
-<option value="6319855" si="457">Betania Do Piaui</option>
-<option value="6321168" si="458">Betim</option>
-<option value="7839663" si="459">Beverley</option>
-<option value="6320466" si="460">Bezerros</option>
-<option value="8604685" si="461">Bezirk Murtal</option>
-<option value="1337215" si="462">Bhola District</option>
-<option value="6321169" si="463">Bias Fortes</option>
-<option value="6321170" si="464">Bicas</option>
-<option value="7053264" si="465">Bihsud</option>
-<option value="6321171" si="466">Biquinhas</option>
-<option value="6320759" si="467">Biritinga</option>
-<option value="7839560" si="468">Blackall Tambo</option>
-<option value="7839694" si="469">Blacktown</option>
-<option value="7839695" si="470">Bland</option>
-<option value="7839696" si="471">Blayney</option>
-<option value="2175228" si="472">Blue Mountains Municipality</option>
-<option value="6321172" si="473">Boa Esperanca</option>
-<option value="6319856" si="474">Boa Hora</option>
-<option value="6320760" si="475">Boa Nova</option>
-<option value="6320283" si="476">Boa Ventura</option>
-<option value="3405614" si="477">Boa Viagem</option>
-<option value="6319352" si="478">Boa Vista</option>
-<option value="6320284" si="479">Boa Vista</option>
-<option value="6319661" si="480">Boa Vista Do Gurupi</option>
-<option value="6319305" si="481">Boa Vista Do Ramos</option>
-<option value="6320761" si="482">Boa Vista Do Tupim</option>
-<option value="6320623" si="483">Boca Da Mata</option>
-<option value="6319306" si="484">Boca Do Acre</option>
-<option value="6319857" si="485">Bocaina</option>
-<option value="6321173" si="486">Bocaina De Minas</option>
-<option value="6321174" si="487">Bocaiuva</option>
-<option value="7839664" si="488">Boddington</option>
-<option value="6320128" si="489">Bodo</option>
-<option value="6320467" si="490">Bodoco</option>
-<option value="7839697" si="491">Bogan</option>
-<option value="1337163" si="492">Bogra District</option>
-<option value="7576102" si="493">Bolivar</option>
-<option value="6320468" si="494">Bom Conselho</option>
-<option value="6321175" si="495">Bom Despacho</option>
-<option value="6319662" si="496">Bom Jardim</option>
-<option value="6320469" si="497">Bom Jardim</option>
-<option value="6321176" si="498">Bom Jardim De Minas</option>
-<option value="6319032" si="499">Bom Jesus</option>
-<option value="6319858" si="500">Bom Jesus</option>
-<option value="6320285" si="501">Bom Jesus</option>
-<option value="6320762" si="502">Bom Jesus Da Lapa</option>
-<option value="6321177" si="503">Bom Jesus Da Penha</option>
-<option value="6320763" si="504">Bom Jesus Da Serra</option>
-<option value="6319663" si="505">Bom Jesus Das Selvas</option>
-<option value="6321178" si="506">Bom Jesus Do Amparo</option>
-<option value="6319218" si="507">Bom Jesus Do Araguaia</option>
-<option value="6321179" si="508">Bom Jesus Do Galho</option>
-<option value="6319380" si="509">Bom Jesus Do Tocantins</option>
-<option value="6319528" si="510">Bom Jesus Do Tocantins</option>
-<option value="6319664" si="511">Bom Lugar</option>
-<option value="6319859" si="512">Bom Principio Do Piaui</option>
-<option value="6321180" si="513">Bom Repouso</option>
-<option value="6320286" si="514">Bom Sucesso</option>
-<option value="6321181" si="515">Bom Sucesso</option>
-<option value="7839698" si="516">Bombala</option>
-<option value="6319353" si="517">Bonfim</option>
-<option value="6321182" si="518">Bonfim</option>
-<option value="6319860" si="519">Bonfim Do Piaui</option>
-<option value="6321183" si="520">Bonfinopolis De Minas</option>
-<option value="6320764" si="521">Boninal</option>
-<option value="6319381" si="522">Bonito</option>
-<option value="6320470" si="523">Bonito</option>
-<option value="6320765" si="524">Bonito</option>
-<option value="6321184" si="525">Bonito De Minas</option>
-<option value="6320287" si="526">Bonito De Santa Fe</option>
-<option value="7668898" si="527">Bonou</option>
-<option value="7839699" si="528">Boorowa</option>
-<option value="6319047" si="529">Boqueirao</option>
-<option value="6319135" si="530">Boqueirao Do Leao</option>
-<option value="6319861" si="531">Boqueirao Do Piaui</option>
-<option value="6320686" si="532">Boquim</option>
-<option value="6320766" si="533">Boquira</option>
-<option value="6319307" si="534">Borba</option>
-<option value="6320289" si="535">Borborema</option>
-<option value="6321185" si="536">Borda Da Mata</option>
-<option value="7839532" si="537">Boroondara</option>
-<option value="3343726" si="538">Bosansko-Podrinjski Kanton</option>
-<option value="7839700" si="539">Botany Bay</option>
-<option value="6321186" si="540">Botelhos</option>
-<option value="6321187" si="541">Botumirim</option>
-<option value="6320767" si="542">Botupora</option>
-<option value="7839561" si="543">Boulia</option>
-<option value="7839701" si="544">Bourke</option>
-<option value="7839473" si="545">Boyup Brook</option>
-<option value="3405004" si="546">Braganca</option>
-<option value="1337192" si="547">Brahmanbaria District</option>
-<option value="6320624" si="548">Branquinha</option>
-<option value="6321190" si="549">Bras Pires</option>
-<option value="6319382" si="550">Brasil Novo</option>
-<option value="6321188" si="551">Brasilandia De Minas</option>
-<option value="6319529" si="552">Brasilandia Do Tocantins</option>
-<option value="6319278" si="553">Brasileia</option>
-<option value="6319862" si="554">Brasileira</option>
-<option value="6321189" si="555">Brasilia De Minas</option>
-<option value="6321192" si="556">Brasopolis</option>
-<option value="6321191" si="557">Braunas</option>
-<option value="7839665" si="558">Break O'Day</option>
-<option value="6320471" si="559">Brejao</option>
-<option value="6320129" si="560">Brejinho</option>
-<option value="6320472" si="561">Brejinho</option>
-<option value="6319530" si="562">Brejinho De Nazare</option>
-<option value="6319665" si="563">Brejo</option>
-<option value="6320473" si="564">Brejo Da Madre De Deus</option>
-<option value="6319666" si="565">Brejo De Areia</option>
-<option value="6320290" si="566">Brejo Do Cruz</option>
-<option value="6319863" si="567">Brejo Do Piaui</option>
-<option value="6320291" si="568">Brejo Dos Santos</option>
-<option value="6320687" si="569">Brejo Grande</option>
-<option value="6319383" si="570">Brejo Grande Do Araguaia</option>
-<option value="3404832" si="571">Brejo Santo</option>
-<option value="6319074" si="572">Brejoes</option>
-<option value="6320768" si="573">Brejolandia</option>
-<option value="6319384" si="574">Breu Branco</option>
-<option value="6319385" si="575">Breves</option>
-<option value="7839702" si="576">Brewarrina</option>
-<option value="7839474" si="577">Bridgetown-Greenbushes</option>
-<option value="7839351" si="578">Brighton</option>
-<option value="7839533" si="579">Brimbank</option>
-<option value="7839562" si="580">Brisbane</option>
-<option value="2173910" si="581">Broken Hill Municipality</option>
-<option value="7839475" si="582">Brookton</option>
-<option value="7839347" si="583">Broome</option>
-<option value="7839348" si="584">Broomehill-Tambellup</option>
-<option value="6320769" si="585">Brotas De Macaubas</option>
-<option value="7839349" si="586">Bruce Rock</option>
-<option value="6321193" si="587">Brumadinho</option>
-<option value="6320770" si="588">Brumado</option>
-<option value="6693370" si="589">Bruxelles-Capitale</option>
-<option value="7670587" si="590">Bubanza</option>
-<option value="6321194" si="591">Bueno Brandao</option>
-<option value="6320771" si="592">Buerarema</option>
-<option value="7670933" si="593">Bugendana</option>
-<option value="6321195" si="594">Bugre</option>
-<option value="6320475" si="595">Buique</option>
-<option value="6319279" si="596">Bujari</option>
-<option value="6319386" si="597">Bujaru</option>
-<option value="7670588" si="598">Bukinanvana</option>
-<option value="7839563" si="599">Bulloo</option>
-<option value="7839534" si="600">Buloke</option>
-<option value="7839476" si="601">Bunbury</option>
-<option value="7839564" si="602">Bundaberg</option>
-<option value="7670589" si="603">Buraza</option>
-<option value="7839565" si="604">Burdekin</option>
-<option value="6319667" si="605">Buriti</option>
-<option value="6319668" si="606">Buriti Bravo</option>
-<option value="6319531" si="607">Buriti Do Tocantins</option>
-<option value="6319864" si="608">Buriti Dos Lopes</option>
-<option value="6319865" si="609">Buriti Dos Montes</option>
-<option value="6319669" si="610">Buriticupu</option>
-<option value="6320772" si="611">Buritirama</option>
-<option value="6319670" si="612">Buritirana</option>
-<option value="6319253" si="613">Buritis</option>
-<option value="6321196" si="614">Buritis</option>
-<option value="6321197" si="615">Buritizeiro</option>
-<option value="7052899" si="616">Burkah</option>
-<option value="7839566" si="617">Burke</option>
-<option value="7839352" si="618">Burnie</option>
-<option value="2075316" si="619">Burnside</option>
-<option value="7839703" si="620">Burwood</option>
-<option value="7670590" si="621">Busiga</option>
-<option value="7670591" si="622">Busoni</option>
-<option value="7839477" si="623">Busselton</option>
-<option value="7670592" si="624">Buyengero</option>
-<option value="2172879" si="625">Byron Shire</option>
-<option value="6319308" si="626">Caapiranga</option>
-<option value="6320292" si="627">Caapora</option>
-<option value="6320773" si="628">Caatiba</option>
-<option value="6320293" si="629">Cabaceiras</option>
-<option value="6320774" si="630">Cabaceiras Do Paraguacu</option>
-<option value="6321198" si="631">Cabeceira Grande</option>
-<option value="6319866" si="632">Cabeceiras Do Piaui</option>
-<option value="6320294" si="633">Cabedelo</option>
-<option value="6319231" si="634">Cabixi</option>
-<option value="6320476" si="635">Cabo De Santo Agostinho</option>
-<option value="6321199" si="636">Cabo Verde</option>
-<option value="7839704" si="637">Cabonne</option>
-<option value="6320477" si="638">Cabrobo</option>
-<option value="6319255" si="639">Cacaulandia</option>
-<option value="6319228" si="640">Caceres</option>
-<option value="6320775" si="641">Cachoeira</option>
-<option value="6321200" si="642">Cachoeira Da Prata</option>
-<option value="6321201" si="643">Cachoeira De Minas</option>
-<option value="6321128" si="644">Cachoeira De Pajeu</option>
-<option value="6319388" si="645">Cachoeira Do Arari</option>
-<option value="6319387" si="646">Cachoeira Do Piria</option>
-<option value="6319048" si="647">Cachoeira Dos Indios</option>
-<option value="6321202" si="648">Cachoeira Dourada</option>
-<option value="6319671" si="649">Cachoeira Grande</option>
-<option value="6319532" si="650">Cachoeirinha</option>
-<option value="6320478" si="651">Cachoeirinha</option>
-<option value="6320295" si="652">Cacimba De Areia</option>
-<option value="6320296" si="653">Cacimba De Dentro</option>
-<option value="6320297" si="654">Cacimbas</option>
-<option value="6319232" si="655">Cacoal</option>
-<option value="2243171" si="656">Cacuaco Municipality</option>
-<option value="6320776" si="657">Cacule</option>
-<option value="6320777" si="658">Caem</option>
-<option value="6321203" si="659">Caetanopolis</option>
-<option value="6320778" si="660">Caetanos</option>
-<option value="6321204" si="661">Caete</option>
-<option value="6320479" si="662">Caetes</option>
-<option value="6320779" si="663">Caetite</option>
-<option value="6320780" si="664">Cafarnaum</option>
-<option value="3863502" si="665">Cafayete</option>
-<option value="6321205" si="666">Caiana</option>
-<option value="6319171" si="667">Caibate</option>
-<option value="6320298" si="668">Caicara</option>
-<option value="6320130" si="669">Caicara Do Norte</option>
-<option value="6320131" si="670">Caico</option>
-<option value="7839567" si="671">Cairns</option>
-<option value="6320781" si="672">Cairu</option>
-<option value="6319672" si="673">Cajapio</option>
-<option value="6319673" si="674">Cajari</option>
-<option value="6319049" si="675">Cajazeiras</option>
-<option value="6319867" si="676">Cajazeiras Do Piaui</option>
-<option value="6320299" si="677">Cajazeirinhas</option>
-<option value="6320625" si="678">Cajueiro</option>
-<option value="6319868" si="679">Cajueiro Da Praia</option>
-<option value="6321206" si="680">Cajuri</option>
-<option value="6320480" si="681">Calcado</option>
-<option value="6319494" si="682">Calcoene</option>
-<option value="6321207" si="683">Caldas</option>
-<option value="6320300" si="684">Caldas Brandao</option>
-<option value="6320782" si="685">Caldeirao Grande</option>
-<option value="6319869" si="686">Caldeirao Grande Do Piaui</option>
-<option value="6320481" si="687">Calumbi</option>
-<option value="6320783" si="688">Camacan</option>
-<option value="6320784" si="689">Camacari</option>
-<option value="6321208" si="690">Camacho</option>
-<option value="6320301" si="691">Camalau</option>
-<option value="6320785" si="692">Camamu</option>
-<option value="6321209" si="693">Camanducaia</option>
-<option value="6320482" si="694">Camaragibe</option>
-<option value="7839478" si="695">Cambridge</option>
-<option value="6321210" si="696">Cambui</option>
-<option value="6321211" si="697">Cambuquira</option>
-<option value="7839705" si="698">Camden</option>
-<option value="6319389" si="699">Cameta</option>
-<option value="6320049" si="700">Camocim</option>
-<option value="6320483" si="701">Camocim De Sao Felix</option>
-<option value="6321212" si="702">Campanario</option>
-<option value="6321213" si="703">Campanha</option>
-<option value="7839535" si="704">Campaspe</option>
-<option value="7839651" si="705">Campbelltown</option>
-<option value="2172583" si="706">Campbelltown Municipality</option>
-<option value="6320626" si="707">Campestre</option>
-<option value="6321214" si="708">Campestre</option>
-<option value="6319674" si="709">Campestre Do Maranhao</option>
-<option value="6320302" si="710">Campina Grande</option>
-<option value="6321215" si="711">Campina Verde</option>
-<option value="6319870" si="712">Campinas Do Piaui</option>
-<option value="6319217" si="713">Campinas Do Sul</option>
-<option value="6320627" si="714">Campo Alegre</option>
-<option value="6320786" si="715">Campo Alegre De Lourdes</option>
-<option value="6319871" si="716">Campo Alegre Do Fidalgo</option>
-<option value="6321216" si="717">Campo Azul</option>
-<option value="6321217" si="718">Campo Belo</option>
-<option value="3467789" si="719">Campo Bom</option>
-<option value="3467779" si="720">Campo Do Brito</option>
-<option value="6321218" si="721">Campo Do Meio</option>
-<option value="6319128" si="722">Campo Ere</option>
-<option value="6321219" si="723">Campo Florido</option>
-<option value="6320787" si="724">Campo Formoso</option>
-<option value="6319872" si="725">Campo Grande Do Piaui</option>
-<option value="6319873" si="726">Campo Largo Do Piaui</option>
-<option value="3467719" si="727">Campo Limpo Paulista</option>
-<option value="6319874" si="728">Campo Maior</option>
-<option value="6319256" si="729">Campo Novo De Rondonia</option>
-<option value="6320132" si="730">Campo Redondo</option>
-<option value="6321220" si="731">Campos Altos</option>
-<option value="6321221" si="732">Campos Gerais</option>
-<option value="6319533" si="733">Campos Lindos</option>
-<option value="3403533" si="734">Campos Sales</option>
-<option value="6320484" si="735">Camutanga</option>
-<option value="6321224" si="736">Cana Verde</option>
-<option value="6321222" si="737">Canaa</option>
-<option value="6319390" si="738">Canaa Dos Carajas</option>
-<option value="7839706" si="739">Canada Bay</option>
-<option value="6319071" si="740">Canapi</option>
-<option value="6320788" si="741">Canapolis</option>
-<option value="6321223" si="742">Canapolis</option>
-<option value="6320789" si="743">Canarana</option>
-<option value="6319875" si="744">Canavieira</option>
-<option value="6320790" si="745">Canavieiras</option>
-<option value="6320791" si="746">Candeal</option>
-<option value="3467552" si="747">Candeias</option>
-<option value="6319257" si="748">Candeias Do Jamari</option>
-<option value="6320792" si="749">Candiba</option>
-<option value="6319675" si="750">Candido Mendes</option>
-<option value="6320793" si="751">Candido Sales</option>
-<option value="6320133" si="752">Canguaretama</option>
-<option value="3467499" si="753">Canhoba</option>
-<option value="6320485" si="754">Canhotinho</option>
-<option value="3403350" si="755">Caninde</option>
-<option value="6319169" si="756">Caninde De Sao Francisco</option>
-<option value="7839479" si="757">Canning</option>
-<option value="6320794" si="758">Cansancao</option>
-<option value="6319354" si="759">Canta</option>
-<option value="6321225" si="760">Cantagalo</option>
-<option value="6319676" si="761">Cantanhede</option>
-<option value="7839707" si="762">Canterbury</option>
-<option value="6319876" si="763">Canto Do Buriti</option>
-<option value="6320795" si="764">Canudos</option>
-<option value="6319216" si="765">Canudos Do Vale</option>
-<option value="6319391" si="766">Capanema</option>
-<option value="6318996" si="767">Capao Do Cipo</option>
-<option value="6321226" si="768">Caparao</option>
-<option value="7839480" si="769">Capel</option>
-<option value="6320628" si="770">Capela</option>
-<option value="6320688" si="771">Capela</option>
-<option value="6320796" si="772">Capela Do Alto Alegre</option>
-<option value="6321227" si="773">Capela Nova</option>
-<option value="6321228" si="774">Capelinha</option>
-<option value="6321229" si="775">Capetinga</option>
-<option value="6320303" si="776">Capim</option>
-<option value="6321230" si="777">Capim Branco</option>
-<option value="6320797" si="778">Capim Grosso</option>
-<option value="6321231" si="779">Capinopolis</option>
-<option value="6319677" si="780">Capinzal Do Norte</option>
-<option value="3403145" si="781">Capistrano</option>
-<option value="6321232" si="782">Capitao Andrade</option>
-<option value="6319877" si="783">Capitao De Campos</option>
-<option value="6321233" si="784">Capitao Eneas</option>
-<option value="6319878" si="785">Capitao Gervasio Oliveira</option>
-<option value="6319392" si="786">Capitao Poco</option>
-<option value="6321234" si="787">Capitolio</option>
-<option value="6319280" si="788">Capixaba</option>
-<option value="6320486" si="789">Capoeiras</option>
-<option value="6321235" si="790">Caputira</option>
-<option value="6319879" si="791">Caracol</option>
-<option value="6321236" si="792">Carai</option>
-<option value="6320798" si="793">Caraibas</option>
-<option value="6321237" si="794">Caranaiba</option>
-<option value="6321238" si="795">Carandai</option>
-<option value="6321239" si="796">Carangola</option>
-<option value="6321240" si="797">Caratinga</option>
-<option value="6319309" si="798">Carauari</option>
-<option value="6320134" si="799">Caraubas</option>
-<option value="6320304" si="800">Caraubas</option>
-<option value="6319880" si="801">Caraubas Do Piaui</option>
-<option value="6320799" si="802">Caravelas</option>
-<option value="3466976" si="803">Carazinho</option>
-<option value="6321241" si="804">Carbonita</option>
-<option value="6320800" si="805">Cardeal Da Silva</option>
-<option value="7839536" si="806">Cardinia</option>
-<option value="6321242" si="807">Careacu</option>
-<option value="6319310" si="808">Careiro</option>
-<option value="6319311" si="809">Careiro Da Varzea</option>
-<option value="6320050" si="810">Caridade</option>
-<option value="6319018" si="811">Caridade Do Piaui</option>
-<option value="6320801" si="812">Carinhanha</option>
-<option value="3466940" si="813">Carira</option>
-<option value="3402891" si="814">Carire</option>
-<option value="6319534" si="815">Cariri Do Tocantins</option>
-<option value="3402881" si="816">Caririacu</option>
-<option value="3402874" si="817">Carius</option>
-<option value="6321243" si="818">Carlos Chagas</option>
-<option value="6321244" si="819">Carmesia</option>
-<option value="6321245" si="820">Carmo Da Cachoeira</option>
-<option value="6321246" si="821">Carmo Da Mata</option>
-<option value="6321247" si="822">Carmo De Minas</option>
-<option value="6321248" si="823">Carmo Do Cajuru</option>
-<option value="6321249" si="824">Carmo Do Paranaiba</option>
-<option value="6321250" si="825">Carmo Do Rio Claro</option>
-<option value="6319535" si="826">Carmolandia</option>
-<option value="6320689" si="827">Carmopolis</option>
-<option value="6321251" si="828">Carmopolis De Minas</option>
-<option value="6320487" si="829">Carnaiba</option>
-<option value="7839481" si="830">Carnamah</option>
-<option value="7839482" si="831">Carnarvon</option>
-<option value="6319033" si="832">Carnauba Dos Dantas</option>
-<option value="6320135" si="833">Carnaubais</option>
-<option value="6320051" si="834">Carnaubal</option>
-<option value="6320488" si="835">Carnaubeira Da Penha</option>
-<option value="6321252" si="836">Carneirinho</option>
-<option value="6320629" si="837">Carneiros</option>
-<option value="6319355" si="838">Caroebe</option>
-<option value="6319678" si="839">Carolina</option>
-<option value="7839568" si="840">Carpentaria</option>
-<option value="6320489" si="841">Carpina</option>
-<option value="6321253" si="842">Carrancas</option>
-<option value="6320305" si="843">Carrapateira</option>
-<option value="6319536" si="844">Carrasco Bonito</option>
-<option value="7839708" si="845">Carrathool</option>
-<option value="6320490" si="846">Caruaru</option>
-<option value="6319679" si="847">Carutapera</option>
-<option value="6321254" si="848">Carvalhopolis</option>
-<option value="6321255" si="849">Carvalhos</option>
-<option value="6321256" si="850">Casa Grande</option>
-<option value="6320802" si="851">Casa Nova</option>
-<option value="6321257" si="852">Cascalho Rico</option>
-<option value="6320052" si="853">Cascavel</option>
-<option value="6319537" si="854">Caseara</option>
-<option value="7839537" si="855">Casey</option>
-<option value="6320491" si="856">Casinhas</option>
-<option value="6320306" si="857">Casserengue</option>
-<option value="6321258" si="858">Cassia</option>
-<option value="7839350" si="859">Cassowary Coast</option>
-<option value="3402582" si="860">Castanhal</option>
-<option value="6319258" si="861">Castanheiras</option>
-<option value="6319881" si="862">Castelo Do Piaui</option>
-<option value="6320803" si="863">Castro Alves</option>
-<option value="6321260" si="864">Cataguases</option>
-<option value="6320053" si="865">Catarina</option>
-<option value="6321261" si="866">Catas Altas</option>
-<option value="6321262" si="867">Catas Altas Da Noruega</option>
-<option value="6320492" si="868">Catende</option>
-<option value="6320307" si="869">Catingueira</option>
-<option value="6320804" si="870">Catolandia</option>
-<option value="6320308" si="871">Catole Do Rocha</option>
-<option value="6320805" si="872">Catu</option>
-<option value="6321263" si="873">Catuji</option>
-<option value="6320054" si="874">Catunda</option>
-<option value="6320806" si="875">Caturama</option>
-<option value="6320309" si="876">Caturite</option>
-<option value="6321264" si="877">Catuti</option>
-<option value="6320055" si="878">Caucaia</option>
-<option value="6321265" si="879">Caxambu</option>
-<option value="6319680" si="880">Caxias</option>
-<option value="6319882" si="881">Caxingo</option>
-<option value="2241967" si="882">Cazengo Municipality</option>
-<option value="6320136" si="883">Ceara-Mirim</option>
-<option value="6319681" si="884">Cedral</option>
-<option value="3402329" si="885">Cedro</option>
-<option value="3466498" si="886">Cedro De Sao Joao</option>
-<option value="6321266" si="887">Cedro Do Abaete</option>
-<option value="7839652" si="888">Ceduna</option>
-<option value="7670593" si="889">Cendajuru</option>
-<option value="6319538" si="890">Centenario</option>
-<option value="6320807" si="891">Central</option>
-<option value="7839353" si="892">Central Coast</option>
-<option value="7839709" si="893">Central Darling</option>
-<option value="6321267" si="894">Central De Minas</option>
-<option value="7839685" si="895">Central Desert</option>
-<option value="6319682" si="896">Central Do Maranhao</option>
-<option value="7839538" si="897">Central Goldfields</option>
-<option value="7839354" si="898">Central Highlands</option>
-<option value="7839569" si="899">Central Highlands</option>
-<option value="6321268" si="900">Centralina</option>
-<option value="6319683" si="901">Centro Do Guilherme</option>
-<option value="6319684" si="902">Centro Novo Do Maranhao</option>
-<option value="6319233" si="903">Cerejeiras</option>
-<option value="6320137" si="904">Cerro Cora</option>
-<option value="6319136" si="905">Cerro Grande</option>
-<option value="7839710" si="906">Cessnock</option>
-<option value="6320493" si="907">Cha De Alegria</option>
-<option value="6320494" si="908">Cha Grande</option>
-<option value="6320630" si="909">Cha Preta</option>
-<option value="3861945" si="910">Chacabuco</option>
-<option value="6321269" si="911">Chacara</option>
-<option value="7052997" si="912">Chaghcharan</option>
-<option value="7053320" si="913">Chah Ab</option>
-<option value="7053052" si="914">Chahar Asyab</option>
-<option value="7053793" si="915">Chahar Bolak</option>
-<option value="7053294" si="916">Chahar Burjak</option>
-<option value="7732594" si="917">Chahar Dara</option>
-<option value="7053314" si="918">Chahar Darah</option>
-<option value="7053794" si="919">Chahar Kent</option>
-<option value="7052998" si="920">Chahar Sadah</option>
-<option value="7053335" si="921">Chak-e Wardak</option>
-<option value="7729835" si="922">Chakhansur</option>
-<option value="7053321" si="923">Chal</option>
-<option value="6321270" si="924">Chale</option>
-<option value="1337194" si="925">Chandpur District</option>
-<option value="6319540" si="926">Chapada Da Natividade</option>
-<option value="6319539" si="927">Chapada De Areia</option>
-<option value="6321271" si="928">Chapada Do Norte</option>
-<option value="6321272" si="929">Chapada Gaucha</option>
-<option value="6319152" si="930">Chapadao Do Ceu</option>
-<option value="6319008" si="931">Chapadinha</option>
-<option value="7053956" si="932">Chapah Darah</option>
-<option value="1337164" si="933">Chapai Nawabganj District</option>
-<option value="7053265" si="934">Chaparhar</option>
-<option value="7839483" si="935">Chapman Valley</option>
-<option value="7054037" si="936">Charikar</option>
-<option value="7053257" si="937">Charkh</option>
-<option value="7839653" si="938">Charles Sturt</option>
-<option value="3466262" si="939">Charqueada</option>
-<option value="7839570" si="940">Charters Towers</option>
-<option value="6320056" si="941">Chaval</option>
-<option value="6319393" si="942">Chaves</option>
-<option value="7732204" si="943">Chawkay</option>
-<option value="7839571" si="944">Cherbourg</option>
-<option value="6321273" si="945">Chiador</option>
-<option value="7053795" si="946">Chimtal</option>
-<option value="7053037" si="947">Chisht-e Sharif</option>
-<option value="1337199" si="948">Chittagong District</option>
-<option value="7839484" si="949">Chittering</option>
-<option value="7054031" si="950">Chorah</option>
-<option value="6320057" si="951">Choro</option>
-<option value="6320058" si="952">Chorozinho</option>
-<option value="1337205" si="953">Chuadanga District</option>
-<option value="6319259" si="954">Chupinguaia</option>
-<option value="6320808" si="955">Cicero Dantas</option>
-<option value="6319685" si="956">Cidelandia</option>
-<option value="6320809" si="957">Cipo</option>
-<option value="6321274" si="958">Cipotanea</option>
-<option value="7839355" si="959">Circular Head</option>
-<option value="7839486" si="960">City of Cockburn</option>
-<option value="6619279" si="961">City of Sydney</option>
-<option value="2058592" si="962">City of West Torrens</option>
-<option value="6321275" si="963">Claraval</option>
-<option value="7839654" si="964">Clare and Gilbert Valleys</option>
-<option value="7839485" si="965">Claremont</option>
-<option value="7839356" si="966">Clarence</option>
-<option value="7839711" si="967">Clarence Valley</option>
-<option value="6321276" si="968">Claro Dos Pocoes</option>
-<option value="6321277" si="969">Claudio</option>
-<option value="7839655" si="970">Cleve</option>
-<option value="7839572" si="971">Cloncurry</option>
-<option value="6320810" si="972">Coaraci</option>
-<option value="7839712" si="973">Cobar</option>
-<option value="6319883" si="974">Cocal</option>
-<option value="6319884" si="975">Cocal De Telha</option>
-<option value="6319885" si="976">Cocal Dos Alves</option>
-<option value="6319215" si="977">Cocalinho</option>
-<option value="6320811" si="978">Cocos</option>
-<option value="6319312" si="979">Codajas</option>
-<option value="6319686" si="980">Codo</option>
-<option value="6319687" si="981">Coelho Neto</option>
-<option value="7839713" si="982">Coffs Harbour</option>
-<option value="6321278" si="983">Coimbra</option>
-<option value="6320631" si="984">Coite Do Noia</option>
-<option value="6319886" si="985">Coivaras</option>
-<option value="7839539" si="986">Colac-Otway</option>
-<option value="6319394" si="987">Colares</option>
-<option value="6319688" si="988">Colinas</option>
-<option value="6319541" si="989">Colinas Do Tocantins</option>
-<option value="7839487" si="990">Collie</option>
-<option value="6319594" si="991">Colmeia</option>
-<option value="6319887" si="992">Colonia Do Gurgueia</option>
-<option value="6319888" si="993">Colonia Do Piaui</option>
-<option value="6320632" si="994">Colonia Leopoldina</option>
-<option value="6319234" si="995">Colorado Do Oeste</option>
-<option value="6321279" si="996">Coluna</option>
-<option value="6319542" si="997">Combinado</option>
-<option value="6321280" si="998">Comendador Gomes</option>
-<option value="6321281" si="999">Comercinho</option>
-<option value="1337193" si="1000">Comilla District</option>
-
-
-
-    </select>
-  </td>
-  <td>
-    <input type="button" class="MSPP_btn" onclick="MSPP.a2c('slctn')" value="&gt;" />
-    <input type="button" class="MSPP_btn" onclick="MSPP.aa2c('slctn')" value="&gt;&gt;" />
-    <input type="button" class="MSPP_btn" onclick="MSPP.c2a('slctn')" value="&lt;" />
-    <input type="button" class="MSPP_btn" onclick="MSPP.cc2a('slctn')" value="&lt;&lt;" />
-  </td>
-  <td>
-    <div>Selected</div>
-    <select id="slctn" multiple="true" size="10">
-
-    </select>
-  </td>
-  <td>
-    <input type="button" class="MSPP_btn" onclick="MSPP.c2u('slctn')" value="&uarr;" />
-    <input type="button" class="MSPP_btn" onclick="MSPP.c2d('slctn')" value="&darr;" />
-  </td>
- </tr>
-</table>
-
-<hr />
-
-<pre>
-<!--
-        <option value="a" si="0">A</option>
-        <option value="b" si="1">B</option>
-        <option value="c" si="2">C</option>
-        <option value="d" si="3">D</option>
-        <option value="e" si="4">E</option>
-        <option value="f" si="5">F</option>
-        <option value="g" si="6">G</option>
-        <option value="h" si="7">H</option>
-        <option value="i" si="8">I</option>
-        <option value="j" si="9">J</option>
-        <option value="k" si="10">K</option>
-        <option value="l" si="11">L</option>
-        <option value="m" si="12">M</option>
-        <option value="n" si="13">N</option>
-        <option value="o" si="14">O</option>
-        <option value="p" si="15">P</option>
-        <option value="q" si="16">Q</option>
-        <option value="r" si="17">R</option>
-        <option value="s" si="18">S</option>
-        <option value="t" si="19">T</option>
-        <option value="u" si="20">U</option>
-        <option value="v" si="21">V</option>
-        <option value="w" si="22">W</option>
-        <option value="x" si="23">X</option>
-        <option value="y" si="24">Y</option>
-        <option value="z" si="25">Z</option>
-
-
-
 <option value="7052950" si="0">Ab Band</option>
 <option value="7052785" si="1">Ab-e Kamari</option>
 <option value="6321101" si="2">Abadia Dos Dourados</option>
@@ -6174,6 +5143,66 @@
 <option value="7053792" si="4997">Ziruk</option>
 <option value="2353169" si="4998">Zoundweogo Province</option>
 <option value="7054005" si="4999">Zurmat</option>
+
+
+
+    </select>
+  </td>
+  <td>
+    <input type="button" class="MSPP_btn" onclick="MSPP.a2c('slctn')" value="&gt;" />
+    <input type="button" class="MSPP_btn" onclick="MSPP.aa2c('slctn')" value="&gt;&gt;" />
+    <input type="button" class="MSPP_btn" onclick="MSPP.c2a('slctn')" value="&lt;" />
+    <input type="button" class="MSPP_btn" onclick="MSPP.cc2a('slctn')" value="&lt;&lt;" />
+  </td>
+  <td>
+    <div>Selected</div>
+    <select id="slctn" multiple="true" size="10">
+
+    </select>
+  </td>
+  <td>
+    <input type="button" class="MSPP_btn" onclick="MSPP.c2u('slctn')" value="&uarr;" />
+    <input type="button" class="MSPP_btn" onclick="MSPP.c2d('slctn')" value="&darr;" />
+  </td>
+ </tr>
+</table>
+
+<hr />
+
+<pre>
+
+
+<!--
+        <option value="a" si="0">A</option>
+        <option value="b" si="1">B</option>
+        <option value="c" si="2">C</option>
+        <option value="d" si="3">D</option>
+        <option value="e" si="4">E</option>
+        <option value="f" si="5">F</option>
+        <option value="g" si="6">G</option>
+        <option value="h" si="7">H</option>
+        <option value="i" si="8">I</option>
+        <option value="j" si="9">J</option>
+        <option value="k" si="10">K</option>
+        <option value="l" si="11">L</option>
+        <option value="m" si="12">M</option>
+        <option value="n" si="13">N</option>
+        <option value="o" si="14">O</option>
+        <option value="p" si="15">P</option>
+        <option value="q" si="16">Q</option>
+        <option value="r" si="17">R</option>
+        <option value="s" si="18">S</option>
+        <option value="t" si="19">T</option>
+        <option value="u" si="20">U</option>
+        <option value="v" si="21">V</option>
+        <option value="w" si="22">W</option>
+        <option value="x" si="23">X</option>
+        <option value="y" si="24">Y</option>
+        <option value="z" si="25">Z</option>
+
+
+
+
 
 -->
 
