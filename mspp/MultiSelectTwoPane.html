@@ -65,8 +65,12 @@
                }
            },
            cc2a : function(id) { // move all from chosen back to avail
+                console.time('t1');
                 this.selectAllChosen(id);
+                console.timeEnd('t1');
+                console.time('t2');
                 this.c2a(id);
+                console.timeEnd('t2');
            },
 
            c2a : function (id) { // move selected from chosen back to avail
@@ -76,23 +80,35 @@
                    var newAvailFrame = [];
                    var newChosenFrame = [];
                    var chosenRefLength = chosenRef.length;
+                   console.time('t2.1');
                    for (var i = 0; i < chosenRefLength; i++) {
                        var currentChosenRef = chosenRef[i];
+                       var optionHtml = currentChosenRef.outerHTML;
+                       var si = +optionHtml.match(/ si=\"(.*)\"/)[1];
                        if (currentChosenRef.selected) {
-                           newAvailFrame[+currentChosenRef.getAttribute('si')] = currentChosenRef.outerHTML;
+                           newAvailFrame[si] = optionHtml;
+                           //newAvailFrame[+currentChosenRef.getAttribute('si')] = currentChosenRef.outerHTML;
                        } else {
-                           newChosenFrame[+currentChosenRef.getAttribute('si')] = currentChosenRef.outerHTML;
+                           //newChosenFrame[+currentChosenRef.getAttribute('si')] = currentChosenRef.outerHTML;
+                           newChosenFrame[si] = optionHtml;
                        }
                    }
+                   console.timeEnd('t2.1');
+                   console.time('t2.2');
                    chosenRef.innerHTML = newChosenFrame.join('');
+                   console.timeEnd('t2.2');
                    //
                    var availRefLength = availRef.length;
+                   console.time('t2.3');
                    for (var i = 0; i < availRefLength; i++) {
                        var currentAvailRef = availRef[i];
                        newAvailFrame[+currentAvailRef.getAttribute('si')] = currentAvailRef.outerHTML;
                    }
+                   console.timeEnd('t2.3');
+                   console.time('t2.4');
                    //
                    availRef.innerHTML = newAvailFrame.join('');
+                   console.timeEnd('t2.4');
                }
            },
            c2u : function(id) { // move selected from chosen one place up
@@ -118,7 +134,8 @@
            selectAllChosen : function(id) {
                var chosenRef = document.getElementById(id);
                if (chosenRef.hasChildNodes()) {
-                   for (var i = 0; i < chosenRef.length; i++) {
+                   var chosenRefLength = chosenRef.length; 
+                   for (var i = 0; i < chosenRefLength; i++) {
                        chosenRef[i].selected = true;
                    }
                }
